@@ -2,7 +2,7 @@
   "name": "netlify-introductions",
   "version": "1.0.0",
   "description": "Native-like Page Transitions with Vue and Nuxt, A Travel App",
-  "author": "sdras <sarah.drasner@gmail.com>",
+  "author": "lunaceee <lunaceee@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "nuxt",
