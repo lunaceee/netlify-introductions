@@ -2,8 +2,7 @@
   <div>
     <p>helllllllo</p>
       <ul>
-        <li>{{ name }}</li>
-        <li>{{ pronouns }}</li>
+        <li>{{ post.title }} {{ post.pronouns }}</li>
       </ul>
     </div>
 </template>
@@ -11,11 +10,8 @@
 <script>
 export default {
   props: {
-    name: {
-      type: String
-    },
-    pronouns: {
-      type: String
+    post: {
+      type: Object
     }
   }
 }

@@ -14,5 +14,42 @@ collections:
     fields: # The fields for each document, usually in front matter
       - { label: "Name", name: "title", widget: "string" }
       - { label: "Pronouns", name: "pronouns", widget: "string" }
-
+      - {
+          label: "Browser",
+          name: "browser",
+          widget: "select",
+          options: ["chrome", "firefox"],
+          required: false,
+        }
+      - {
+          label: "Location",
+          name: "location",
+          widget: "string",
+          required: false,
+        }
+      - { label: "Twitter", name: "twitter", widget: "string", required: false }
+      - {
+          label: "Facebook",
+          name: "facebook",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Linkedin",
+          name: "linkedin",
+          widget: "string",
+          required: false,
+        }
+      - { label: "Team", name: "team", widget: "string" }
+      - { label: "Place", name: "place", widget: "string", required: false }
+      - { label: "Book", name: "book", widget: "string", required: false }
+      - { label: "Meal", name: "meal", widget: "string", required: false }
+      - {
+          label: "Petpeeves",
+          name: "petpeeves",
+          widget: "text",
+          required: false,
+        }
+      - { label: "Feedback", name: "feedback", widget: "text", required: false }
+      - { label: "Others", name: "others", widget: "text", required: false }
     format: "json"

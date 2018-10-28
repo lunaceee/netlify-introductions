@@ -10,7 +10,7 @@
       <img :src="user.img" />
     </div>
 
-    <button @click="callLambda" :class="[following ? followclass : '', follow]" key="follow">
+    <button @click="toggleFollow" :class="[following ? followclass : '', follow]" key="follow">
       <span v-if="following">&#10004; Following</span>
       <span v-else>Follow</span>
     </button>
@@ -59,9 +59,6 @@ import IconMapPin from './IconMapPin.vue'
 import IconCalendar from './IconCalendar.vue'
 
 export default {
-  props: {
-    msg: String
-  },
   components: {
     IconBase,
     IconMail,
@@ -75,8 +72,7 @@ export default {
       follow: 'follow',
       followclass: 'active-follow',
       activeUser: 'profile-photo',
-      secondaryUser: 'profile-photo-secondary',
-      lambdaMsg: "Click to get a message"
+      secondaryUser: 'profile-photo-secondary'
     }
   },
   computed: {
@@ -91,11 +87,6 @@ export default {
         el.style.transform = `translate3d(${-70 +
           this.indexedUser * 55}px, -70px, 0) scale(0.25)`
       }
-    },
-    callLambda() {
-      fetch("/.netlify/lambda/lambda").then(response => response.json()).then((json) => {
-        this.lambdaMsg = json.msg
-      })
     },
     toggleFollow() {
       if (this.following) {

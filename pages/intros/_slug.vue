@@ -1,23 +1,24 @@
 <template>
-    <AppIntroduction v-model="obj" />
+    <div>
+      <AppIntroduction v-bind="postdaddy" />
+    </div>
 </template>
 
 <script>
 import AppIntroduction from "~/components/AppIntroduction.vue";
 export default {
-  data() {
-    return { obj: {} };
-  },
   components: {
     AppIntroduction
   },
   async asyncData({ params }) {
-    console.log("fff");
     let post = await import("~/content/intros/" + params.slug + ".json");
-    console.log(post);
-    console.log("slug", params.slug)
+    console.log("post", post);
 
-    return { obj: post };
+    // return post; // return {title:'jj', pr:'jhgghjk'}
+    return { postdaddy: { post: post } };
+  },
+  data() {
+    return {};
   }
 };
 </script>
