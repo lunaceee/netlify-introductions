@@ -2,24 +2,25 @@
 <main>
 <div>
       <div>
-        <h3>Name: </h3><h4>{{ post.title }}</h4>
-        <li>Pronouns: {{ post.pronouns }}</li>
-        <li>Browser: {{ post.browser }}</li>
-        <li>Location: {{ post.location }}</li>
-        <li>{{ post.twitter }}</li>
-        <li>{{ post.facebook }}</li>
-        <li>{{ post.linkedin }}</li>
-        <li>{{ post.team }}</li>
-        <li>{{ post.place }}</li>
-        <li>{{ post.book }}</li>
-        <li>{{ post.meal }}</li>
-        <li>{{ post.petpeeves }}</li>
-        <li>{{ post.feedback }}</li>
-        <li>{{ post.others }}</li>
+        <ul>
+          <li>Name{{ post.title }}</li>
+          <li>Pronouns: {{ post.pronouns }}</li>
+          <li>Browser: {{ post.browser }}</li>
+          <li>Location: {{ post.location }}</li>
+          <li>Twitter: {{ post.twitter }}</li>
+          <li>Facebook: {{ post.facebook }}</li>
+          <li>LinkedIn: {{ post.linkedin }}</li>
+          <li>Team: {{ post.team }}</li>
+          <li>Place: {{ post.place }}</li>
+          <li>Book: { post.book }}</li>
+          <li>Meal: {{ post.meal }}</li>
+          <li>Petpeeves: {{ post.petpeeves }}</li>
+          <li>Feedback: {{ post.feedback }}</li>
+          <li>Others: {{ post.others }}</li>
+        </ul>
       </div>
   </div>
 </main>
-  
 </template>
 
 <script>
