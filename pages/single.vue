@@ -2,10 +2,10 @@
   <main>
 
     <div class="places">
-      <p class="top">{{ users[0].name }}'s Places</p>
+      <p class="top">{{ userInfo[0].title }}'s Places</p>
       <h1>{{ places[0].name }}</h1>
       <p><strong>Rating: {{ places[0].rating }}</strong></p>
-      <div class="stars"><app-star-rating /></div>
+      <!-- <div class="stars"><app-star-rating /></div> -->
 
       <div class="main-img"></div>
       <p>{{ places[0].description }}</p>
@@ -26,13 +26,10 @@
 
 <script>
 import { mapState } from 'vuex'
-import AppStarRating from '~/components/AppStarRating.vue'
+// import AppStarRating from '~/components/AppStarRating.vue'
 
 export default {
-  components: {
-    AppStarRating
-  },
-  computed: mapState(['page', 'users', 'places'])
+  computed: mapState(['page', 'userInfo', 'places'])
 }
 </script>
 

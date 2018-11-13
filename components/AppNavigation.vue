@@ -1,22 +1,21 @@
 <template>
   <header :class="{ 
-    'place' : (page === 'place'), 
     'group' : (page === 'group'), 
     'index' : (page === 'index') 
   }">
 
     <transition-group name="bk" tag="div" class="bk-img">
       <div key="img1" v-if="page === 'index'" class="header-img1"></div>
-      <div key="img2" v-else-if="page === 'place'" class="header-img2"></div>
       <div key="img3" v-else class="header-img3"></div>
     </transition-group>
 
     <div class="nav-wrapper">
       <nav>
         <ul>
-          <nuxt-link exact to="/"><li>{{ selectedUser.name | firstName }}'s Home test</li></nuxt-link>
-          <nuxt-link to="/place"><li>{{ selectedUser.name | firstName }}'s Places</li></nuxt-link>
-          <nuxt-link to="/group"><li>{{ selectedUser.name | firstName }}'s Group Trips</li></nuxt-link>
+          <nuxt-link exact to="/"><li>Home</li></nuxt-link>
+          <nuxt-link exact to="/intros/luna/"><li>{{ selectedUser.title }}'s Home</li></nuxt-link>
+          <nuxt-link to="/group"><li>{{ selectedUser.title }}'s Team</li></nuxt-link>
+
         </ul>
 
         <div @click="menuOpened = !menuOpened">
@@ -28,36 +27,41 @@
 
         <app-nav-transition />
 
-        <app-stats v-if="page === 'index'" :selectedUser="selectedUser" />
       </nav>
     </div>
   </header>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import { TimelineMax, Expo, Sine, Back } from 'gsap'
-import AppStats from './AppStats.vue'
 import IconBase from './IconBase.vue'
 import IconThreeDot from './IconThreeDot.vue'
 import AppMenuDrawer from './AppMenuDrawer.vue'
 import AppNavTransition from './AppNavTransition.vue'
 
 export default {
+  computed: {
+    ...mapState(['page', 'userInfo']),
+    ...mapGetters(['selectedUser'])
+  },
+  created() {
+    this.$store.dispatch('fetchUserInfo');
+  },
   data() {
     return {
       saved: false,
-      menuOpened: false
+      menuOpened: false,
     }
   },
   components: {
-    AppStats,
     IconBase,
     IconThreeDot,
     AppMenuDrawer,
     AppNavTransition
   },
   methods: {
+    ...mapActions(['SET_USER_INFO']),
     openMenu() {
       TweenMax.to('.first', 0.2, {
         x: 18,
@@ -89,16 +93,6 @@ export default {
       TweenMax.to('.first, .middle, .last', 0.2, {
         fill: '#fff'
       })
-    }
-  },
-  computed: {
-    ...mapState(['page']),
-    ...mapGetters(['selectedUser'])
-  },
-  filters: {
-    firstName(input) {
-      var lastIndex = input.lastIndexOf(' ')
-      return input.substring(0, lastIndex)
     }
   },
   watch: {

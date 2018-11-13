@@ -1,8 +1,8 @@
 <template>
   <transition-group tag="div">
-    <div v-for="(user, i) in users" 
+    <div v-for="(user, i) in userInfo" 
       @click="changeUser(i)"
-      :key="user.name" 
+      :key="user.title" 
       :class="[user === selectedUser ? activeUser : secondaryUser, `profile-${i}`]"
       :ref="`profile${i}`"
     > 
@@ -15,57 +15,13 @@
       <span v-else>Follow</span>
     </button>
 
-    <h2 key="profile-name" class="profile-name">
-      <span v-if="page === 'group'" class="user-trip">{{ selectedUser.trips[0] }}</span>
-      <span v-else>{{ selectedUser.name }}</span>
-    </h2>
-
-    <div @click="addPlace" class="side-icon" key="sideicon">
-      <icon-base v-if="page === 'index'" icon-name="mail" icon-color="white" width="22" height="22">
-        <icon-mail />
-      </icon-base>
-
-      <icon-base v-else icon-name="plus" class="plus" width="18" height="18">
-        <icon-plus />
-      </icon-base>
-    </div>
-
-    <div key="saveinfo" class="saveinfo">Saved!</div>
-
-    <aside key="aside">
-      <p class="map-pin">
-        <icon-base icon-name="map pin" width="18" height="18">
-          <icon-map-pin />
-        </icon-base>
-        United States
-      </p>
-
-      <p class="calendar">
-        <icon-base icon-name="calendar" width="18" height="18">
-          <icon-calendar />
-        </icon-base>
-        {{ selectedUser.days }} days traveling
-      </p>
-    </aside>
   </transition-group>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import IconBase from './IconBase.vue'
-import IconMail from './IconMail.vue'
-import IconPlus from './IconPlus.vue'
-import IconMapPin from './IconMapPin.vue'
-import IconCalendar from './IconCalendar.vue'
 
 export default {
-  components: {
-    IconBase,
-    IconMail,
-    IconPlus,
-    IconMapPin,
-    IconCalendar
-  },
   data() {
     return {
       following: false,
@@ -76,7 +32,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['page', 'users', 'indexedUser']),
+    ...mapState(['page', 'indexedUser', 'userInfo']),
     ...mapGetters(['selectedUser'])
   },
   methods: {

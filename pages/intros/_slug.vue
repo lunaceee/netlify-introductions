@@ -12,9 +12,6 @@ export default {
   },
   async asyncData({ params }) {
     let post = await import("~/content/intros/" + params.slug + ".json");
-    console.log("post", post);
-
-    // return post; // return {title:'jj', pr:'jhgghjk'}
     return { postdaddy: { post: post } };
   },
   data() {

@@ -5,15 +5,16 @@
     @enter="enter"
     :css="false">
     <div class="menudrawer" v-if="menuOpened">
-      <nuxt-link exact to="/">{{ selectedUser.name | firstName }}'s Home</nuxt-link><br>
-      <nuxt-link to="/place">{{ selectedUser.name | firstName }}'s Places</nuxt-link><br>
-      <nuxt-link to="/group">{{ selectedUser.name | firstName }}'s Group Trips</nuxt-link>
+      <nuxt-link exact to="/">Home</nuxt-link><br>
+      <nuxt-link to="/intros/">{{ selectedUser.title | firstName }}'s Home</nuxt-link><br>
+      <nuxt-link to="/group">{{ selectedUser.title | firstName }}'s Team</nuxt-link>
     </div>
+    <div>app menu</div>
   </transition>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions, mapState } from 'vuex'
 import { TweenMax, TimelineMax, Sine, Expo } from 'gsap'
 
 export default {
@@ -23,7 +24,17 @@ export default {
       default: false
     }
   },
+  created() {
+    this.$store.dispatch('fetchUserInfo');
+    console.log("title", this.$store.getters.selectedUser)
+
+  },
+  computed: {
+    ...mapState(['page', 'indexedUser', 'userInfo']),
+    ...mapGetters(['selectedUser']),
+  },
   methods: {
+    ...mapActions(['SET_USER_INFO']),
     beforeEnter(el) {
       TweenMax.set(el, {
         opacity: 0,
@@ -63,9 +74,6 @@ export default {
       )
       done()
     }
-  },
-  computed: {
-    ...mapGetters(['selectedUser'])
   },
   filters: {
     firstName(input) {

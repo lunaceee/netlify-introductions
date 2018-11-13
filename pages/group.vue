@@ -12,7 +12,6 @@
         <div class="box item5"></div>
       </div>
     </div>
-    <AppIntroduction />
 
     <aside class="sidebar">
       <h3><icon-base icon-name="calendar"><icon-calendar /></icon-base> Schedule</h3>
@@ -27,13 +26,11 @@
 <script>
 import IconBase from '~/components/IconBase.vue'
 import IconCalendar from '~/components/IconCalendar.vue'
-import AppIntroduction from '~/components/AppIntroduction.vue'
 
 export default {
   components: {
     IconBase,
-    IconCalendar,
-    AppIntroduction
+    IconCalendar
   }
 }
 </script>

@@ -1,18 +1,14 @@
 <template>
   <main>
-    <AppForm />
+    This is the main page.
   </main>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import AppForm from '~/components/AppForm.vue'
 
 export default {
-  components: {
-    AppForm
-  },
-  computed: mapState(['page', 'users', 'places'])
+  computed: mapState(['page', 'userInfo'])
 }
 </script>
 
@@ -21,19 +17,6 @@ main {
   padding-top: 20px;
   border-top: 1px solid #ddd;
   margin-top: 120px;
-}
-
-.places {
-  img {
-    float: left;
-    margin: 0 15px 15px 0;
-  }
-  p {
-    margin-top: 10px;
-  }
-  .location {
-    padding: 10px 0;
-  }
 }
 
 hr {
