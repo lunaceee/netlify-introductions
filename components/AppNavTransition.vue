@@ -7,7 +7,7 @@
       :ref="`profile${i}`"
     > 
       <div class="online"></div>
-      <img :src="user.img" />
+      <img :src="user.thumnail" />
     </div>
 
     <button @click="toggleFollow" :class="[following ? followclass : '', follow]" key="follow">

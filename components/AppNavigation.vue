@@ -13,7 +13,7 @@
       <nav>
         <ul>
           <nuxt-link exact to="/"><li>Home</li></nuxt-link>
-          <nuxt-link exact to="/intros/luna/"><li>{{ selectedUser.title }}'s Home</li></nuxt-link>
+          <nuxt-link exact to="/intros/kumamon/"><li>{{ selectedUser.title }}'s Home</li></nuxt-link>
           <nuxt-link to="/group"><li>{{ selectedUser.title }}'s Team</li></nuxt-link>
 
         </ul>
