@@ -1,11 +1,13 @@
 <template>
   <header :class="{ 
+    'single' : (page === 'intros-slug'), 
     'group' : (page === 'group'), 
     'index' : (page === 'index') 
   }">
 
     <transition-group name="bk" tag="div" class="bk-img">
       <div key="img1" v-if="page === 'index'" class="header-img1"></div>
+      <img key="img2" v-else-if="page === 'intros-slug'" :src="selectedUser.background" class="header-img2" alt="">
       <div key="img3" v-else class="header-img3"></div>
     </transition-group>
 
@@ -13,9 +15,8 @@
       <nav>
         <ul>
           <nuxt-link exact to="/"><li>Home</li></nuxt-link>
-          <nuxt-link exact to="/intros/kumamon/"><li>{{ selectedUser.title }}'s Home</li></nuxt-link>
+          <nuxt-link exact :to="selectedUser._path"><li>{{ selectedUser.title }}'s Home</li></nuxt-link>
           <nuxt-link to="/group"><li>{{ selectedUser.title }}'s Team</li></nuxt-link>
-
         </ul>
 
         <div @click="menuOpened = !menuOpened">
@@ -33,7 +34,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import { TimelineMax, Expo, Sine, Back } from 'gsap'
 import IconBase from './IconBase.vue'
 import IconThreeDot from './IconThreeDot.vue'
@@ -45,13 +46,13 @@ export default {
     ...mapState(['page', 'userInfo']),
     ...mapGetters(['selectedUser'])
   },
-  created() {
-    this.$store.dispatch('fetchUserInfo');
-  },
+  // created() {
+  //   this.$store.dispatch('fetchUserInfo');
+  // }
   data() {
     return {
       saved: false,
-      menuOpened: false,
+      menuOpened: false
     }
   },
   components: {
@@ -61,7 +62,6 @@ export default {
     AppNavTransition
   },
   methods: {
-    ...mapActions(['SET_USER_INFO']),
     openMenu() {
       TweenMax.to('.first', 0.2, {
         x: 18,
@@ -168,15 +168,19 @@ header {
 }
 
 .header-img1 {
-  @include header("/header1.jpg");
+  @include header("/images/illo-home.jpg");
 }
 
 .header-img2 {
-  @include header("/header2.jpg");
+  background: center center;
+  background-size: cover;
+  position: absolute;
+  width: 100vw;
+  height: 300px;
 }
 
 .header-img3 {
-  @include header("/header3.jpg");
+  @include header("/images/uploads/header3.jpg");
 }
 
 .bk-enter-active,

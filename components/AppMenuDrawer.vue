@@ -6,10 +6,9 @@
     :css="false">
     <div class="menudrawer" v-if="menuOpened">
       <nuxt-link exact to="/">Home</nuxt-link><br>
-      <nuxt-link to="/intros/">{{ selectedUser.title | firstName }}'s Home</nuxt-link><br>
-      <nuxt-link to="/group">{{ selectedUser.title | firstName }}'s Team</nuxt-link>
+      <nuxt-link exact :to="selectedUser._path">{{ selectedUser.title }}'s Home</nuxt-link><br>
+      <nuxt-link to="/group">{{ selectedUser.title }}'s Team</nuxt-link>
     </div>
-    <div>app menu</div>
   </transition>
 </template>
 
@@ -26,8 +25,6 @@ export default {
   },
   created() {
     this.$store.dispatch('fetchUserInfo');
-    console.log("title", this.$store.getters.selectedUser)
-
   },
   computed: {
     ...mapState(['page', 'indexedUser', 'userInfo']),
@@ -75,12 +72,12 @@ export default {
       done()
     }
   },
-  filters: {
-    firstName(input) {
-      var lastIndex = input.lastIndexOf(' ')
-      return input.substring(0, lastIndex)
-    }
-  }
+  // filters: {
+  //   firstName(input) {
+  //     var lastIndex = input.lastIndexOf(' ')
+  //     return input.substring(0, lastIndex)
+  //   }
+  // }
 }
 </script>
 

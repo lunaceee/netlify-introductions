@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="places">
+    <div>
       <p class="top">Group Activities</p>
       <h1>4 Person Trip to Hawaii</h1>
       <hr />

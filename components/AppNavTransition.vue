@@ -5,15 +5,20 @@
       :key="user.title" 
       :class="[user === selectedUser ? activeUser : secondaryUser, `profile-${i}`]"
       :ref="`profile${i}`"
-    > 
-      <div class="online"></div>
-      <img :src="user.thumnail" />
+    >
+      <img v-if="page === 'index'" src="../static/images/netlify-logo.png" />
+      <img v-else :src="user.thumnail" alt="">
     </div>
 
-    <button @click="toggleFollow" :class="[following ? followclass : '', follow]" key="follow">
-      <span v-if="following">&#10004; Following</span>
-      <span v-else>Follow</span>
+    <button :class="follow" key="follow">
+      <span>Follow</span>
     </button>
+
+     <h2 key="profile-name" class="profile-name">
+      <span v-if="page === 'group'" class="user-trip">{{ selectedUser.title }}</span>
+      <span v-else-if="page === 'index'">Netlify</span>
+      <span v-else>{{ selectedUser.title }}</span>
+    </h2>
 
   </transition-group>
 </template>
@@ -28,7 +33,7 @@ export default {
       follow: 'follow',
       followclass: 'active-follow',
       activeUser: 'profile-photo',
-      secondaryUser: 'profile-photo-secondary'
+      secondaryUser: 'profile-photo-secondary',
     }
   },
   computed: {
@@ -43,149 +48,12 @@ export default {
         el.style.transform = `translate3d(${-70 +
           this.indexedUser * 55}px, -70px, 0) scale(0.25)`
       }
-    },
-    toggleFollow() {
-      if (this.following) {
-        this.$store.commit('removeFollower')
-      } else {
-        this.$store.commit('addFollower')
-      }
-      this.following = !this.following
-    },
-    addPlace() {
-      if (!this.saved && this.page !== 'index') {
-        this.addAnimation()
-        this.saved = true
-      } else {
-        this.removeAnimation()
-        this.saved = false
-      }
-    },
-    addAnimation() {
-      //I love prettier, but it does make this animation code a lot longer and less legible than it could be :/
-      const tl = new TimelineMax()
-
-      tl.add('start')
-      tl.to(
-        '.plus',
-        0.75,
-        {
-          rotation: -360,
-          transformOrigin: '50% 50%',
-          ease: Expo.easeOut
-        },
-        'start'
-      )
-      tl.to(
-        '.line2',
-        0.7,
-        {
-          scaleY: 0.5,
-          x: -2,
-          rotation: -45,
-          transformOrigin: '50% 100%',
-          ease: Expo.easeOut
-        },
-        'start'
-      )
-      tl.to(
-        '.line1',
-        0.7,
-        {
-          rotation: -50,
-          x: 7,
-          scaleX: 3,
-          transformOrigin: '50% 100%',
-          ease: Expo.easeOut
-        },
-        'start'
-      )
-      tl.fromTo(
-        '.saveinfo',
-        0.5,
-        {
-          autoAlpha: 0
-        },
-        {
-          autoAlpha: 1,
-          ease: Sine.easeOut
-        },
-        'start'
-      )
-      tl.to(
-        '.saveinfo',
-        0.4,
-        {
-          autoAlpha: 0,
-          ease: Expo.easeIn
-        },
-        'start+=1'
-      )
-
-      return tl
-    },
-    removeAnimation() {
-      const tl = new TimelineMax()
-
-      tl.add('begin')
-      tl.to(
-        '.plus',
-        0.75,
-        {
-          rotation: 0,
-          transformOrigin: '50% 50%',
-          ease: Expo.easeOut
-        },
-        'begin'
-      )
-      tl.to(
-        '.line2',
-        0.7,
-        {
-          scaleY: 1,
-          x: 0,
-          rotation: 0,
-          transformOrigin: '50% 100%',
-          ease: Expo.easeOut
-        },
-        'begin'
-      )
-      tl.to(
-        '.line1',
-        0.7,
-        {
-          rotation: 0,
-          x: 0,
-          scaleX: 1,
-          transformOrigin: '50% 100%',
-          ease: Back.easeOut
-        },
-        'begin'
-      )
-
-      tl.timeScale(1.2)
-
-      return tl
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-aside p {
-  text-align: right;
-  position: absolute;
-  right: 0;
-  top: 250px;
-  color: white;
-}
-
-.calendar,
-.map-pin {
-  transition: 0.4s all ease-out;
-  opacity: 0;
-}
-
 @mixin group($top, $left) {
   position: absolute;
   top: $top;
@@ -214,9 +82,6 @@ aside p {
   img {
     border-radius: 4px;
   }
-  .online {
-    @include online(40px, 10px, 2px solid black);
-  }
 }
 
 .profile-photo-secondary {
@@ -226,9 +91,6 @@ aside p {
   transition: none;
   img {
     border-radius: 50% 50%;
-  }
-  .online {
-    @include online(40px, 0px, 1px solid black);
   }
 }
 
@@ -272,10 +134,6 @@ aside p {
   opacity: 0;
 }
 
-.active-follow {
-  background: rgb(5, 134, 106);
-}
-
 .profile-name {
   font-size: 35px;
   @include group(355px, 0);
@@ -294,7 +152,7 @@ aside p {
 }
 
 //animations
-.place {
+.single {
   .follow {
     transform: translate3d(-215px, -80px, 0);
   }

@@ -6,6 +6,7 @@
 
 <script>
 import AppIntroduction from "~/components/AppIntroduction.vue";
+
 export default {
   components: {
     AppIntroduction

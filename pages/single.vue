@@ -1,7 +1,6 @@
 <template>
   <main>
-
-    <div class="places">
+    <div>
       <p class="top">{{ userInfo[0].title }}'s Places</p>
       <h1>{{ places[0].name }}</h1>
       <p><strong>Rating: {{ places[0].rating }}</strong></p>
@@ -52,7 +51,7 @@ p,
 }
 
 .main-img {
-  background: url("/header1.jpg") center center;
+  background: url("/header2.jpg") center center;
   background-size: cover;
   width: 100%;
   height: 240px;

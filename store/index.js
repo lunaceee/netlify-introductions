@@ -8,7 +8,8 @@ const createStore = () => {
       userInfo: [
         {
           title: "luna",
-          pronouns: "she"
+          pronouns: "she",
+          _path: "/intros/luna"
         }
       ],
       places: [
@@ -69,7 +70,8 @@ const createStore = () => {
         );
 
         const userInfo = await context.keys().map(fileName => ({
-          ...context(fileName)
+          ...context(fileName),
+          _path: `/intros/${fileName.replace(".json", "").replace("./", "")}`
         }));
 
         commit("SET_USER_INFO", userInfo);
