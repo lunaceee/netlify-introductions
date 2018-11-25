@@ -1,13 +1,13 @@
 <template>
   <transition-group tag="div">
     <div v-for="(user, i) in userInfo" 
-      @click="changeUser(i)"
       :key="user.title" 
       :class="[user === selectedUser ? activeUser : secondaryUser, `profile-${i}`]"
-      :ref="`profile${i}`"
     >
-      <img v-if="page === 'index'" src="../static/images/netlify-logo.png" />
-      <img v-else :src="user.thumnail" alt="">
+      <nuxt-link exact :to="userInfo[i]._path">
+        <img v-if="page === 'index'" src="../static/images/netlify-logo.png" />
+        <img v-else :src="user.thumnail" alt="">
+      </nuxt-link>
     </div>
 
     <button :class="follow" key="follow">
@@ -38,16 +38,21 @@ export default {
   },
   computed: {
     ...mapState(['page', 'indexedUser', 'userInfo']),
-    ...mapGetters(['selectedUser'])
+    ...mapGetters(['selectedUser']),
   },
   methods: {
     changeUser(i) {
+      const user = this.$store.state.userInfo[i];
+
+      this.$root.$router.push(user._path);
+      /*
       this.$store.commit('changeUser', i)
       if (this.page === 'group') {
         const el = this.$refs.profile0[0]
         el.style.transform = `translate3d(${-70 +
           this.indexedUser * 55}px, -70px, 0) scale(0.25)`
       }
+      */
     }
   }
 }
