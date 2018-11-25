@@ -47,7 +47,7 @@ main {
   main {
     flex-direction: column;
   }
-  .places {
+  .intro {
     width: 100%;
   }
   aside.sidebar {

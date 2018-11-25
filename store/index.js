@@ -54,11 +54,27 @@ const createStore = () => {
       },
       changeUser(state, i) {
         state.indexedUser = i;
+      },
+      changeUserBySlug(state, slug) {
+        let i = 0;
+        for (let user of state.userInfo) {
+          if (user.slug === slug) {
+            state.indexedUser = i;
+            break;
+          }
+          i++;
+        }
       }
     },
     getters: {
       selectedUser: state => {
         return state.userInfo[state.indexedUser];
+      },
+      allUsers: state => {
+        return state.userInfo;
+      },
+      getUserBySlug: state => slug => {
+        return state.userInfo.find(user => user.slug === slug) || {};
       }
     },
     actions: {
@@ -69,10 +85,14 @@ const createStore = () => {
           /\.json$/
         );
 
-        const userInfo = await context.keys().map(fileName => ({
-          ...context(fileName),
-          _path: `/intros/${fileName.replace(".json", "").replace("./", "")}`
-        }));
+        const userInfo = await context.keys().map(fileName => {
+          const slug = fileName.replace(".json", "").replace("./", "");
+          return {
+            ...context(fileName),
+            _path: `/intros/${slug}`,
+            slug: slug
+          };
+        });
 
         commit("SET_USER_INFO", userInfo);
       }

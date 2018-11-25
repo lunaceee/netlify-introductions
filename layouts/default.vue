@@ -84,7 +84,7 @@ main {
   margin: 30px 0 0;
 }
 
-.single {
+.intro {
   width: 60%;
 }
 
@@ -112,7 +112,7 @@ hr {
   main {
     flex-direction: column;
   }
-  .places {
+  .intro {
     width: 100%;
   }
   aside.sidebar {

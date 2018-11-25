@@ -1,7 +1,7 @@
 <template>
-    <div>
-      <AppIntroduction v-bind="postdaddy" />
-    </div>
+  <main>
+    <AppIntroduction v-bind="postdaddy" />
+  </main>
 </template>
 
 <script>
@@ -11,12 +11,12 @@ export default {
   components: {
     AppIntroduction
   },
-  async asyncData({ params }) {
-    let post = await import("~/content/intros/" + params.slug + ".json");
-    return { postdaddy: { post: post } };
-  },
-  data() {
-    return {};
+  async asyncData({ store, params }) {
+    // TODO: don't do this more than once (see AppMenuDrawer.create)
+    await store.dispatch("fetchUserInfo");
+    const data = store.getters.getUserBySlug(params.slug);
+    store.commit("changeUserBySlug", params.slug);
+    return { postdaddy: { post: data } };
   }
 };
 </script>

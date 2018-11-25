@@ -1,11 +1,11 @@
 <template>
   <header :class="{ 
-    'single' : (page === 'intros-slug'), 
+    'intro' : (page === 'intros-slug'), 
     'group' : (page === 'group'), 
     'index' : (page === 'index') 
   }">
 
-    <transition-group name="bk" tag="div" class="bk-img">
+    <transition-group tag="div" name="bk" class="bk-img">
       <div key="img1" v-if="page === 'index'" class="header-img1"></div>
       <img key="img2" v-else-if="page === 'intros-slug'" :src="selectedUser.background" class="header-img2" alt="">
       <div key="img3" v-else class="header-img3"></div>
@@ -46,10 +46,8 @@ export default {
     ...mapState(['page', 'userInfo']),
     ...mapGetters(['selectedUser'])
   },
-  // created() {
-  //   this.$store.dispatch('fetchUserInfo');
-  // }
   data() {
+    console.log("backgroud", this.$store.getters.selectedUser.background)
     return {
       saved: false,
       menuOpened: false

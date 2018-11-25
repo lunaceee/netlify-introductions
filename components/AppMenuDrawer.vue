@@ -23,6 +23,7 @@ export default {
       default: false
     }
   },
+  // TODO: move to upper level (default layout?)
   created() {
     this.$store.dispatch('fetchUserInfo');
   },
