@@ -10,13 +10,9 @@
       </nuxt-link>
     </div>
 
-    <button :class="follow" key="follow">
-      <span>Follow</span>
-    </button>
-
      <h2 key="profile-name" class="profile-name">
-      <span v-if="page === 'group'" class="user-trip">{{ selectedUser.title }}</span>
-      <span v-else-if="page === 'index'">Netlify</span>
+      <span v-if="page === 'group'" class="user-trip">Netlifriends</span>
+      <span v-else-if="page === 'index'"></span>
       <span v-else>{{ selectedUser.title }}</span>
     </h2>
 
@@ -29,9 +25,6 @@ import { mapState, mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      following: false,
-      follow: 'follow',
-      followclass: 'active-follow',
       activeUser: 'profile-photo',
       secondaryUser: 'profile-photo-secondary',
     }
@@ -81,16 +74,6 @@ export default {
   }
 }
 
-.follow {
-  font-weight: bold;
-  width: 150px;
-  transition: 1s all ease;
-  @include group(320px, 220px);
-  &:focus {
-    outline: 1px dotted rgb(5, 134, 106);
-  }
-}
-
 .profile-name {
   font-size: 35px;
   @include group(355px, 0);
@@ -98,22 +81,18 @@ export default {
 
 //animations
 .intro {
-  .follow {
-    transform: translate3d(-215px, -80px, 0);
-  }
   .profile-photo {
     transform: translate3d(-20px, -100px, 0) scale(0.75);
   }
   .profile-name {
-    transform: translate3d(140px, -125px, 0) scale(0.75);
+    transform: translate3d(-8px, -125px, 0) scale(0.75);
     color: white;
   }
 }
 
 .group {
-  .follow {
-    opacity: 0;
-    transition: none;
+  .profile-name {
+    margin-top: 20px;
   }
   .profile-photo {
     img {
@@ -136,27 +115,6 @@ export default {
   .profile-name {
     transform: translate3d(0px, -125px, 0);
     color: white;
-  }
-}
-
-.index {
-  .profile-photo {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
-.index .profile-photo {
-  transform: translate3d(0, 0, 0) scale(1) !important;
-}
-
-//make the icon aligned with the avatars that are similar on mobile
-@media screen and (max-width: 600px) {
-  .group,
-  .intro {
-    .side-icon {
-      transform: translate3d(0, -65px, 0);
-      padding: 14px 14px 12px;
-    }
   }
 }
 

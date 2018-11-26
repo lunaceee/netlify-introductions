@@ -72,13 +72,7 @@ export default {
       )
       done()
     }
-  },
-  // filters: {
-  //   firstName(input) {
-  //     var lastIndex = input.lastIndexOf(' ')
-  //     return input.substring(0, lastIndex)
-  //   }
-  // }
+  }
 }
 </script>
 

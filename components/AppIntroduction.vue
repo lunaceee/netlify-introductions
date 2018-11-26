@@ -1,22 +1,11 @@
 <template>
-  <main>
-    <ul>
-      <li>Name: {{ post.title }}</li>
-      <li>Pronouns: {{ post.pronouns }}</li>
-      <li>Browser: {{ post.browser }}</li>
-      <li>Location: {{ post.location }}</li>
-      <li>Twitter: {{ post.twitter }}</li>
-      <li>Facebook: {{ post.facebook }}</li>
-      <li>LinkedIn: {{ post.linkedin }}</li>
-      <li>Team: {{ post.team }}</li>
-      <li>Place: {{ post.place }}</li>
-      <li>Book: {{ post.book }}</li>
-      <li>Meal: {{ post.meal }}</li>
-      <li>Petpeeves: {{ post.petpeeves }}</li>
-      <li>Feedback: {{ post.feedback }}</li>
-      <li>Others: {{ post.others }}</li>
-    </ul>
-  </main>
+  <div class="intro">
+    <dl>
+        <div class="box" v-for="item in keys" :key="item">
+          <dt>:{{item[1]}}</dt><dd>{{post[item[0]] || "- - -" }}</dd>
+        </div>
+      </dl>
+  </div>
 </template>
 
 <script>
@@ -25,28 +14,32 @@ export default {
     post: {
       type: Object
     }
+  },
+  data() {
+    return {
+      keys: [ 
+      ["title", "Title" ],
+      ["pronouns", "Pronouns"],
+      ["browser", "Browser"],
+      ["location", "Location"],
+      ["twitter", "Twitter"],
+      ["facebook", "Facebook"],
+      ["linkedin", "LinkedIn"],
+      ["team", "Team"],
+      ["place", "Place"],
+      ["book", "Book"],
+      ["meal", "Meal"],
+      ["petpeeves", "Petpeeves"],
+      ["feedback", "Feedback"],
+      ["others", "Others"],
+     ]
+    };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-main {
-  max-width: 1000px;
-  margin: 50px auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-@media screen and (max-width: 1030px) {
-  main {
-    padding: 0 20px;
-  }
-}
-
 @media screen and (max-width: 600px) {
-  main {
-    flex-direction: column;
-  }
   .intro {
     width: 100%;
   }
@@ -68,5 +61,32 @@ p {
 
 .top {
   margin: 30px 0 0;
+}
+
+dl {
+  padding: 0.5em;
+}
+dt {
+  font-size: 1.5em;
+  float: left;
+  clear: left;
+  width: 200px;
+  text-align: left;
+  font-weight: bold;
+  color: #aaa;
+}
+
+dd {
+  clear: both;
+  margin-bottom: 1em;
+  font-size: 1.25em;
+}
+.box {
+  float: left;
+  background-color: #fafafa;
+  border-radius: 5px;
+  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  margin: 1em;
+  padding: 0.5em;
 }
 </style>

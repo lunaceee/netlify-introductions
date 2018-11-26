@@ -7,15 +7,15 @@
 </template>
 
 <script>
-import AppNavigation from '~/components/AppNavigation.vue'
-import AppFooter from '~/components/AppFooter.vue'
+import AppNavigation from "~/components/AppNavigation.vue";
+import AppFooter from "~/components/AppFooter.vue";
 
 export default {
   components: {
     AppNavigation,
     AppFooter
   }
-}
+};
 </script>
 
 
@@ -25,7 +25,8 @@ export default {
 body {
   background: white;
   color: #333;
-  font-family: "Josefin Sans", serif;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

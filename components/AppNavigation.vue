@@ -1,11 +1,11 @@
 <template>
   <header :class="{ 
-    'intro' : (page === 'intros-slug'), 
-    'group' : (page === 'group'), 
+    'intro with-shadow' : (page === 'intros-slug'), 
+    'group with-shadow' : (page === 'group'), 
     'index' : (page === 'index') 
   }">
 
-    <transition-group tag="div" name="bk" class="bk-img">
+    <transition-group tag="div" name="bk" :class="[isIndex ? 'bk-img-index' : 'bk-img']">
       <div key="img1" v-if="page === 'index'" class="header-img1"></div>
       <img key="img2" v-else-if="page === 'intros-slug'" :src="selectedUser.background" class="header-img2" alt="">
       <div key="img3" v-else class="header-img3"></div>
@@ -25,9 +25,7 @@
           </icon-base>
         </div>
         <app-menu-drawer :menuOpened="menuOpened" />
-
         <app-nav-transition />
-
       </nav>
     </div>
   </header>
@@ -47,8 +45,8 @@ export default {
     ...mapGetters(['selectedUser'])
   },
   data() {
-    console.log("backgroud", this.$store.getters.selectedUser.background)
     return {
+      isIndex: 'page === index',
       saved: false,
       menuOpened: false
     }
@@ -110,6 +108,9 @@ header {
   width: 100vw;
   height: 300px;
   position: relative;
+}
+
+header.with-shadow {
   &:before {
     content: "";
     z-index: 10;
@@ -118,31 +119,12 @@ header {
     right: 0;
     bottom: 0;
     left: 0;
-    background: -moz-radial-gradient(
-      center,
-      ellipse cover,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0) 36%,
-      rgba(0, 0, 0, 0.65) 100%
-    ); /* FF3.6-15 */
-    background: -webkit-radial-gradient(
-      center,
-      ellipse cover,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0) 36%,
-      rgba(0, 0, 0, 0.65) 100%
-    ); /* Chrome10-25,Safari5.1-6 */
     background: radial-gradient(
       ellipse at center,
       rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0) 36%,
       rgba(0, 0, 0, 0.65) 100%
-    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(
-        startColorstr='#00000000',
-        endColorstr='#a6000000',
-        GradientType=1
-      ); /* IE6-9 fallback on horizontal gradient */
+    );
     opacity: 0.6;
   }
   &:after {
@@ -167,6 +149,7 @@ header {
 
 .header-img1 {
   @include header("/images/illo-home.jpg");
+  height: 500px;
 }
 
 .header-img2 {
@@ -197,6 +180,12 @@ header {
   width: 100vw;
   height: 300px;
   overflow: hidden;
+  top: 0;
+}
+
+.bk-img-index {
+  position: absolute;
+  height: 600px;
   top: 0;
 }
 

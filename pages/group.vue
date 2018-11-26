@@ -25,12 +25,10 @@
 
 <script>
 import IconBase from '~/components/IconBase.vue'
-import IconCalendar from '~/components/IconCalendar.vue'
 
 export default {
   components: {
-    IconBase,
-    IconCalendar
+    IconBase
   }
 }
 </script>
