@@ -1,39 +1,43 @@
 <template>
   <transition-group tag="div">
-    <div v-for="(user, i) in userInfo" 
-      :key="user.title" 
+    <div
+      v-for="(user, i) in userInfo"
+      :key="user.title"
       :class="[user === selectedUser ? activeUser : secondaryUser]"
     >
       <nuxt-link exact :to="userInfo[i]._path">
-        <img v-if="page === 'index'" src="../static/images/netlify-logo.png" />
-        <img v-else :src="user.thumnail" alt="">
+        <img v-if="page === 'index'" src="../static/images/logo-gem.png">
+        <img v-else :src="user.thumnail" alt>
       </nuxt-link>
     </div>
 
-     <h2 key="profile-name" class="profile-name">
+    <h2 key="profile-name" class="profile-name">
       <span v-if="page === 'group'" class="user-trip">Netlifriends</span>
       <span v-else-if="page === 'index'"></span>
       <span v-else>{{ selectedUser.title }}</span>
     </h2>
-
   </transition-group>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters } from "vuex";
+import logoGem from "./logoGem.svg";
 
 export default {
+  components: {
+    logoGem
+  },
   data() {
     return {
-      activeUser: 'profile-photo',
-      secondaryUser: 'profile-photo-secondary',
-    }
+      activeUser: "profile-photo",
+      secondaryUser: "profile-photo-secondary"
+    };
   },
   computed: {
-    ...mapState(['page', 'indexedUser', 'userInfo']),
-    ...mapGetters(['selectedUser']),
+    ...mapState(["page", "indexedUser", "userInfo"]),
+    ...mapGetters(["selectedUser"])
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -87,6 +91,14 @@ export default {
   .profile-name {
     transform: translate3d(-8px, -125px, 0) scale(0.75);
     color: white;
+  }
+}
+
+.index {
+  .profile-photo {
+    img {
+      border-radius: 50% 50%;
+    }
   }
 }
 

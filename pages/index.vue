@@ -11,7 +11,7 @@ main {
   display: block;
   padding-top: 20px;
   border-top: 1px solid #ddd;
-  margin-top: 300px;
+  margin-top: 100px;
 }
 
 hr {

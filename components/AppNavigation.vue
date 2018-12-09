@@ -1,22 +1,35 @@
 <template>
-  <header :class="{ 
+  <header
+    :class="{ 
     'intro with-shadow' : (page === 'intros-slug'), 
     'group with-shadow' : (page === 'group'), 
     'index' : (page === 'index') 
-  }">
-
+  }"
+  >
     <transition-group tag="div" name="bk" :class="[isIndex ? 'bk-img-index' : 'bk-img']">
       <div key="img1" v-if="page === 'index'" class="header-img1"></div>
-      <img key="img2" v-else-if="page === 'intros-slug'" :src="selectedUser.background" class="header-img2" alt="">
+      <img
+        key="img2"
+        v-else-if="page === 'intros-slug'"
+        :src="selectedUser.background"
+        class="header-img2"
+        alt
+      >
       <div key="img3" v-else class="header-img3"></div>
     </transition-group>
 
     <div class="nav-wrapper">
       <nav>
         <ul>
-          <nuxt-link exact to="/"><li>Home</li></nuxt-link>
-          <nuxt-link exact :to="selectedUser._path"><li>{{ selectedUser.title }}'s Home</li></nuxt-link>
-          <nuxt-link to="/group"><li>{{ selectedUser.title }}'s Team</li></nuxt-link>
+          <nuxt-link exact to="/">
+            <li>Home</li>
+          </nuxt-link>
+          <nuxt-link exact :to="selectedUser._path">
+            <li>{{ selectedUser.title }}'s Home</li>
+          </nuxt-link>
+          <nuxt-link to="/group">
+            <li>{{ selectedUser.title }}'s Team</li>
+          </nuxt-link>
         </ul>
 
         <div @click="menuOpened = !menuOpened">
@@ -24,32 +37,32 @@
             <icon-three-dot/>
           </icon-base>
         </div>
-        <app-menu-drawer :menuOpened="menuOpened" />
-        <app-nav-transition />
+        <app-menu-drawer :menuOpened="menuOpened"/>
+        <app-nav-transition/>
       </nav>
     </div>
   </header>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
-import { TimelineMax, Expo, Sine, Back } from 'gsap'
-import IconBase from './IconBase.vue'
-import IconThreeDot from './IconThreeDot.vue'
-import AppMenuDrawer from './AppMenuDrawer.vue'
-import AppNavTransition from './AppNavTransition.vue'
+import { mapState, mapGetters } from "vuex";
+import { TimelineMax, Expo, Sine, Back } from "gsap";
+import IconBase from "./IconBase.vue";
+import IconThreeDot from "./IconThreeDot.vue";
+import AppMenuDrawer from "./AppMenuDrawer.vue";
+import AppNavTransition from "./AppNavTransition.vue";
 
 export default {
   computed: {
-    ...mapState(['page', 'userInfo']),
-    ...mapGetters(['selectedUser'])
+    ...mapState(["page", "userInfo"]),
+    ...mapGetters(["selectedUser"])
   },
   data() {
     return {
-      isIndex: 'page === index',
+      isIndex: "page === index",
       saved: false,
       menuOpened: false
-    }
+    };
   },
   components: {
     IconBase,
@@ -59,48 +72,48 @@ export default {
   },
   methods: {
     openMenu() {
-      TweenMax.to('.first', 0.2, {
+      TweenMax.to(".first", 0.2, {
         x: 18,
         ease: Sine.easeOut
-      })
-      TweenMax.to('.last', 0.2, {
+      });
+      TweenMax.to(".last", 0.2, {
         x: -18,
         ease: Sine.easeOut
-      })
+      });
       TweenMax.staggerTo(
-        '.first, .middle, .last',
+        ".first, .middle, .last",
         0.2,
         {
-          fill: '#7eebe6',
+          fill: "#7eebe6",
           ease: Sine.easeOut
         },
         0.04
-      )
+      );
     },
     closeMenu() {
-      TweenMax.to('.first', 0.2, {
+      TweenMax.to(".first", 0.2, {
         x: 0,
         ease: Sine.easeIn
-      })
-      TweenMax.to('.last', 0.2, {
+      });
+      TweenMax.to(".last", 0.2, {
         x: 0,
         ease: Sine.easeIn
-      })
-      TweenMax.to('.first, .middle, .last', 0.2, {
-        fill: '#fff'
-      })
+      });
+      TweenMax.to(".first, .middle, .last", 0.2, {
+        fill: "#fff"
+      });
     }
   },
   watch: {
     menuOpened(val) {
       if (val) {
-        this.openMenu()
+        this.openMenu();
       } else {
-        this.closeMenu()
+        this.closeMenu();
       }
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -149,7 +162,7 @@ header.with-shadow {
 
 .header-img1 {
   @include header("/images/illo-home.jpg");
-  height: 500px;
+  height: 400px;
 }
 
 .header-img2 {
