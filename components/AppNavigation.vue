@@ -161,7 +161,7 @@ header.with-shadow {
 }
 
 .header-img1 {
-  @include header("/images/illo-home.jpg");
+  @include header("/images/tree.svg");
   height: 400px;
 }
 

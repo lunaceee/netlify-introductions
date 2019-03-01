@@ -1,8 +1,11 @@
 <template>
   <main>
-    <h2>Welcome to Netlify!</h2>
+    <h2>Netlifrieds</h2>
     <br>
-    <p>Please login onto https://new-introductions.netlify.com/admin to create your own introduction.</p>
+
+    <v-flex xs12 sm6 md3>
+      <v-text-field label="Email" box></v-text-field>
+    </v-flex>
   </main>
 </template>
 

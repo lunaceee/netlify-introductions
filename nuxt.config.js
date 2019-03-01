@@ -1,5 +1,7 @@
 var glob = require("glob");
 var path = require("path");
+const VuetifyLoaderPlugin = require("vuetify-loader/lib/plugin");
+
 // Enhance Nuxt's generate process by gathering all content files from Netifly CMS
 // automatically and match it to the path of your Nuxt routes.
 // The Nuxt routes are generate by Nuxt automatically based on the pages folder.
@@ -49,6 +51,9 @@ module.exports = {
    */
   generate: {
     routes: dynamicRoutes
+  },
+  configureWebpack: {
+    plugins: [new VuetifyLoaderPlugin()]
   }
 };
 
