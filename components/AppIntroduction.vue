@@ -1,7 +1,13 @@
 <template>
-  <v-container>
+  <v-container
+    :class="{ 
+    'intro' : (page === 'intros-slug'), 
+    'group' : (page === 'group'), 
+    'index' : (page === 'index') 
+  }"
+  >
     <v-layout row justify-center class="content">
-      <v-flex xs12 sm6 md8>
+      <v-flex xs12>
         <v-card>
           <v-list v-for="(item, index) in keys" :key="index">
             <v-list-tile :key="index">
@@ -33,7 +39,6 @@ export default {
   data() {
     return {
       keys: [
-        ["title", "Title"],
         ["pronouns", "Pronouns"],
         ["browser", "Browser"],
         ["location", "Location"],
@@ -54,21 +59,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@mixin group($top, $left) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  display: block;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: 0.4s all ease-out;
+}
 .content {
   margin-top: 24px;
 }
-.intro {
-  .profile-photo {
-    position: absolute;
-    backface-visibility: hidden;
-    transform: translateZ(2);
-    transition: 0.4s all ease-out;
+
+@media screen and (max-width: 800px) {
+  .content {
+    margin-top: 40px;
   }
 }
 
-.group {
-  .profile-photo {
-    opacity: 0;
+@media screen and (min-width: 1200px) {
+  .content {
+    margin-top: 120px;
   }
 }
 </style>

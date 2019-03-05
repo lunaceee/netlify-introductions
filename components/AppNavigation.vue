@@ -6,11 +6,6 @@
     'index' : (page === 'index') 
   }"
   >
-    <transition-group tag="div" name="bk" :class="[isIndex ? 'bk-img-index' : 'bk-img']">
-      <div key="img1" v-if="page === 'index'" class="header-img1"></div>
-      <img key="img2" v-else-if="page === 'intros-slug'" class="header-img2" alt>
-      <div key="img3" v-else class="header-img3"></div>
-    </transition-group>
     <div class="nav-wrapper">
       <nav>
         <ul>
@@ -79,7 +74,6 @@ export default {
         ".first, .middle, .last",
         0.2,
         {
-          fill: "#7eebe6",
           ease: Sine.easeOut
         },
         0.04
@@ -95,7 +89,7 @@ export default {
         ease: Sine.easeIn
       });
       TweenMax.to(".first, .middle, .last", 0.2, {
-        fill: "#fff"
+        fill: "#EDE7F6"
       });
     }
   },
@@ -118,29 +112,6 @@ header {
   position: relative;
 }
 
-header.with-shadow {
-  &:before {
-    content: "";
-    z-index: 10;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0.6;
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: #fff;
-  }
-}
-
 @mixin header($imgurl) {
   background: url($imgurl) center center;
   background-size: cover;
@@ -149,51 +120,33 @@ header.with-shadow {
   height: 300px;
 }
 
-.header-img1 {
-  height: 400px;
+// animation
+.index {
+  .header-img {
+    opacity: 0;
+  }
 }
 
-.header-img2 {
-  @include header("/images/uploads/header2.jpg");
+.intro {
+  .header-img {
+    transform: translate(0);
+  }
 }
 
-.header-img3 {
-  @include header("/images/uploads/header3.jpg");
-}
-
-.bk-enter-active,
-.bk-leave-active {
-  transition: all 0.4s ease;
-}
-
-.bk-enter,
-.bk-leave-to {
-  transform: scale(1.1) translateZ(0);
-  opacity: 0;
-}
-
-.bk-img {
-  position: absolute;
-  width: 100vw;
-  height: 300px;
-  overflow: hidden;
-  top: 0;
-}
-
-.bk-img-index {
-  position: absolute;
-  height: 600px;
-  top: 0;
+.group {
+  .header-img {
+    transform: scale(1.6) translate(80px);
+  }
 }
 
 .nav-wrapper {
   width: 100vw;
   position: relative;
   z-index: 1000;
-  background: rgba(4, 67, 98, 0.25);
+  background: #000000;
 }
 
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1200px) {
   .nav-wrapper {
     padding: 0 20px;
   }

@@ -1,7 +1,5 @@
 <template>
-  <main>
-    <AppIntroduction v-bind="postdaddy" />
-  </main>
+  <AppIntroduction v-bind="postdaddy"/>
 </template>
 
 <script>

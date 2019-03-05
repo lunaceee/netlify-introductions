@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-md>
+  <v-container grid-list-md class="content">
     <v-layout row wrap>
       <v-flex xs12 sm6 md3 v-for="(user, i) in userInfo" :key="user.title" class="profile-photo">
         <v-card>
@@ -114,6 +114,12 @@ export default {
   .profile-name {
     transform: translate3d(0px, -125px, 0);
     color: white;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .content {
+    margin-top: 60px;
   }
 }
 </style>
