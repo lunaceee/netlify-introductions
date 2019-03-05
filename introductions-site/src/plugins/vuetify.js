@@ -3,6 +3,7 @@ import Vuetify, { VLayout } from "vuetify/lib";
 import "vuetify/src/stylus/app.styl";
 
 Vue.use(Vuetify, {
+  iconfont: "mdi", // 'md' || 'mdi' || 'fa' || 'fa4'
   theme: {
     primary: "#ee44aa",
     secondary: "#424242",

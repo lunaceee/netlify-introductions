@@ -8,16 +8,9 @@
   >
     <transition-group tag="div" name="bk" :class="[isIndex ? 'bk-img-index' : 'bk-img']">
       <div key="img1" v-if="page === 'index'" class="header-img1"></div>
-      <img
-        key="img2"
-        v-else-if="page === 'intros-slug'"
-        :src="selectedUser.background"
-        class="header-img2"
-        alt
-      >
+      <img key="img2" v-else-if="page === 'intros-slug'" class="header-img2" alt>
       <div key="img3" v-else class="header-img3"></div>
     </transition-group>
-
     <div class="nav-wrapper">
       <nav>
         <ul>
@@ -38,8 +31,10 @@
           </icon-base>
         </div>
         <app-menu-drawer :menuOpened="menuOpened"/>
-        <app-nav-transition/>
       </nav>
+    </div>
+    <div>
+      <app-nav-transition/>
     </div>
   </header>
 </template>
@@ -132,12 +127,6 @@ header.with-shadow {
     right: 0;
     bottom: 0;
     left: 0;
-    background: radial-gradient(
-      ellipse at center,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0) 36%,
-      rgba(0, 0, 0, 0.65) 100%
-    );
     opacity: 0.6;
   }
   &:after {
@@ -148,7 +137,7 @@ header.with-shadow {
     right: 0;
     bottom: 0;
     left: 0;
-    background: #000;
+    background: #fff;
   }
 }
 
@@ -161,16 +150,11 @@ header.with-shadow {
 }
 
 .header-img1 {
-  @include header("/images/tree.svg");
   height: 400px;
 }
 
 .header-img2 {
-  background: center center;
-  background-size: cover;
-  position: absolute;
-  width: 100vw;
-  height: 300px;
+  @include header("/images/uploads/header2.jpg");
 }
 
 .header-img3 {

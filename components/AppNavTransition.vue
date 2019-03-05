@@ -1,32 +1,53 @@
 <template>
   <transition-group tag="div">
     <div
-      v-for="(user, i) in userInfo"
-      :key="user.title"
-      :class="[user === selectedUser ? activeUser : secondaryUser]"
+      key="illos"
+      :class="{ 
+    'intro' : (page === 'intros-slug'), 
+    'group' : (page === 'group'), 
+    'index' : (page === 'index') 
+  }"
     >
-      <nuxt-link exact :to="userInfo[i]._path">
-        <img v-if="page === 'index'" src="../static/images/logo-gem.png">
-        <img v-else :src="user.thumnail" alt>
-      </nuxt-link>
+      <v-container>
+        <v-layout>
+          <v-flex xs3>
+            <img src="../static/images/logo.svg" alt key="logo" class="logo">
+          </v-flex>
+          <v-flex>
+            <img src="../static/images/bird-small.png" alt key="bird" class="bird">
+          </v-flex>
+        </v-layout>
+        <v-layout
+          row
+          justify-center
+          align-center
+          :class="{ 
+    'intro' : (page === 'intros-slug'), 
+    'group' : (page === 'group')
+  }"
+        >
+          <v-flex xs3 sm2>
+            <v-avatar size="120" class="profile-photo">
+              <v-img :src="selectedUser.thumnail" alt>
+                <div class="fill-height bottom-gradient"></div>
+              </v-img>
+            </v-avatar>
+          </v-flex>
+        </v-layout>
+        <v-layout justify-center class="profile-name">
+          <v-flex xs3 sm2>
+            <h1>{{ selectedUser.title }}</h1>
+          </v-flex>
+        </v-layout>
+      </v-container>
     </div>
-
-    <h2 key="profile-name" class="profile-name">
-      <span v-if="page === 'group'" class="user-trip">Netlifriends</span>
-      <span v-else-if="page === 'index'"></span>
-      <span v-else>{{ selectedUser.title }}</span>
-    </h2>
   </transition-group>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import logoGem from "./logoGem.svg";
 
 export default {
-  components: {
-    logoGem
-  },
   data() {
     return {
       activeUser: "profile-photo",
@@ -52,102 +73,45 @@ export default {
 }
 
 .profile-photo {
-  width: 200px;
-  @include group(150px, 0);
-  img {
-    border-radius: 4px;
-  }
-}
-
-.profile-photo-secondary {
-  @include group(150px, 0);
-  width: 200px;
-  opacity: 0;
-  transition: none;
-  img {
-    border-radius: 50% 50%;
-  }
-}
-
-.profile-photo,
-.profile-photo-secondary {
-  img {
-    transition: 0.4s all ease;
-    width: 100%;
-    cursor: pointer;
-  }
+  @include group(160px, 130px);
+  backface-visibility: hidden;
+  transition: 0.4s all ease-out;
 }
 
 .profile-name {
-  font-size: 35px;
-  @include group(355px, 0);
+  @include group(290px, 140px);
+}
+
+.bird {
+  width: 10%;
+  margin-left: 4px;
 }
 
 //animations
 .intro {
+  .logo {
+    @include group(40px, 20px);
+    transform: scale(0.8);
+  }
   .profile-photo {
-    transform: translate3d(-20px, -100px, 0) scale(0.75);
+    transform: translate3d(0, -20px, 0);
   }
   .profile-name {
-    transform: translate3d(-8px, -125px, 0) scale(0.75);
-    color: white;
-  }
-}
-
-.index {
-  .profile-photo {
-    img {
-      border-radius: 50% 50%;
-    }
+    transform: translate3d(0, -10px, 0);
   }
 }
 
 .group {
-  .profile-name {
-    margin-top: 20px;
-  }
-  .profile-photo {
-    img {
-      border-radius: 50% 50%;
-    }
+  .logo {
+    @include group(200px, 100px);
   }
   .profile-photo,
-  .profile-photo-secondary {
-    display: inline-block;
-    position: relative;
-    opacity: 1;
-    width: 50px;
-    margin: 0 4px;
-    img:hover {
-      transition: 0.2s all ease;
-      border: 4px solid white;
-    }
-  }
-
   .profile-name {
-    transform: translate3d(0px, -125px, 0);
-    color: white;
+    opacity: 0;
   }
 }
 
-.items,
-.list-move {
-  transition: all 0.4s ease;
-}
-
-.list-leave-active {
-  position: absolute;
-}
-
-#text {
-  transform-origin: 50% 50%;
-}
-
-svg {
-  fill: #a8dadc;
-}
-
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 00px) {
   ul,
   aside {
     display: none;

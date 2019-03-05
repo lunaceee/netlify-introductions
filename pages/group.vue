@@ -1,78 +1,119 @@
 <template>
-  <main>
-    <div>
-      <p class="top">Group Activities</p>
-      <h1>4 Person Trip to Hawaii</h1>
-      <hr />
-      <div class="wrapper">
-        <div class="box item1"></div>
-        <div class="box item2"></div>
-        <div class="box item3"></div>
-        <div class="box item4"></div>
-        <div class="box item5"></div>
-      </div>
-    </div>
-
-    <aside class="sidebar">
-      <h3><icon-base icon-name="calendar"><icon-calendar /></icon-base> Schedule</h3>
-      <p class="top">Sunday</p>
-      <p>Arrival: We settled in and decided to go snorkeling. We saw spotted dolphins, tons of whales - one whale went right under the boat, and, of course, plenty of sea turtles. The snorkeling area is a little small and can get crowded, but we still had great opportunities to watch the turtles. The crew was terrific - Jason, Jackson, and Shane. We would definitely recommend this activity, and will do it again if we ever get back to Hawaii!</p>
-      <p class="top">Monday</p>
-      <p>After such an exciting first day, we decided to take it a bit easier and just get a nice lunch as our day activity. Had a wonderful time getting an opportunity to walk around a few blocks of Ala Moana and sampling some of the local eats that you can't really get back home. Every stop had something new and interesting to try, and there wasn't a single thing I tried that I really disliked.</p>
-    </aside>
-  </main>
+  <v-container grid-list-md>
+    <v-layout row wrap>
+      <v-flex xs12 sm6 md3 v-for="(user, i) in userInfo" :key="user.title" class="profile-photo">
+        <v-card>
+          <v-list>
+            <v-list-tile>
+              <v-list-tile-avatar>
+                <nuxt-link :to="userInfo[i]._path">
+                  <img :src="user.thumnail">
+                </nuxt-link>
+              </v-list-tile-avatar>
+              <v-list-tile-content>
+                <v-list-tile-title v-html="user.title"></v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+        </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-import IconBase from '~/components/IconBase.vue'
+import { mapState, mapGetters } from "vuex";
 
 export default {
-  components: {
-    IconBase
+  data() {
+    return {
+      activeUser: "profile-photo",
+      secondaryUser: "profile-photo-secondary"
+    };
+  },
+  computed: {
+    ...mapState(["page", "indexedUser", "userInfo"]),
+    ...mapGetters(["selectedUser"])
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-  margin: 10px 0 20px 0;
-  width: 100%;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(4, 24%);
-  grid-template-rows: repeat(3, 120px);
-  justify-content: center;
-  align-content: end;
+@mixin group($top, $left) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  display: block;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: 0.4s all ease-out;
 }
 
-.box {
-  border-radius: 3px;
+.profile-photo {
+  z-index: 1;
+  width: 200px;
 }
 
-$img-slug: hawaii !default;
-$class-slug: item !default;
-
-@for $i from 1 through 6 {
-  .#{$class-slug}#{$i} {
-    background: url("/hawaii#{$i}.jpg") center center no-repeat;
-    background-size: cover;
+.profile-photo-secondary {
+  @include group(400px, 400px);
+  width: 200px;
+  transition: none;
+  img {
+    border-radius: 50% 50%;
   }
 }
 
-.item1 {
-  grid-column: 1 / 5;
+.profile-photo,
+.profile-photo-secondary {
+  img {
+    transition: 0.4s all ease;
+    width: 100%;
+    cursor: pointer;
+  }
 }
 
-.item2 {
-  grid-column: 1 / 3;
-  grid-row: 2 / 4;
+.profile-name {
+  z-index: 1;
+  font-size: 35px;
+  @include group(600px, 400px);
 }
 
-.item3 {
-  grid-column: 3 / 5;
+//animations
+.intro {
+  .profile-photo {
+    transform: translate3d(-20px, -100px, 0) scale(0.75);
+  }
+  .profile-name {
+    transform: translate3d(-8px, -125px, 0) scale(0.75);
+    color: black;
+  }
 }
 
-p {
-  padding-bottom: 10px;
+.group {
+  .profile-name {
+    margin-top: 20px;
+  }
+  .profile-photo {
+    img {
+      border-radius: 50% 50%;
+    }
+  }
+  .profile-photo,
+  .profile-photo-secondary {
+    display: inline-block;
+    position: relative;
+    opacity: 1;
+    width: 50px;
+    margin: 0 4px;
+    img:hover {
+      transition: 0.2s all ease;
+      border: 4px solid white;
+    }
+  }
+
+  .profile-name {
+    transform: translate3d(0px, -125px, 0);
+    color: white;
+  }
 }
 </style>

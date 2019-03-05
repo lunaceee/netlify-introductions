@@ -14,6 +14,7 @@ import "vuetify/src/stylus/app.styl";
 Vue.config.productionTip = false;
 
 Vue.use(Vuetify, {
+  iconfont: "mdi", // 'md' || 'mdi' || 'fa' || 'fa4'
   components: {
     VApp,
     VNavigationDrawer,

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <app-navigation />
+    <app-navigation/>
     <nuxt/>
-    <app-footer />
+    <app-footer/>
   </div>
 </template>
 
@@ -24,6 +24,7 @@ export default {
 
 body {
   background: white;
+  background-size: cover;
   color: #333;
   font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -83,10 +84,6 @@ main {
   color: #666;
   padding: 0;
   margin: 30px 0 0;
-}
-
-.intro {
-  width: 60%;
 }
 
 aside.sidebar {
