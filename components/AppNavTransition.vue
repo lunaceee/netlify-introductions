@@ -60,9 +60,11 @@
           </v-flex>
         </v-layout>
         <v-layout>
-          <v-flex xs3>
-            <img src="../static/images/logo.svg" alt key="logo" class="logo">
-          </v-flex>
+          <nuxt-link exact to="/group">
+            <v-flex xs3>
+              <img src="../static/images/logo.svg" alt key="logo" class="logo">
+            </v-flex>
+          </nuxt-link>
         </v-layout>
         <v-layout
           row
@@ -143,7 +145,7 @@ export default {
 
 .bird-4 {
   z-index: 1;
-  @include group(68px, 220px);
+  @include group(50px, 220px);
   transform: scale(0.2);
 }
 
@@ -342,36 +344,36 @@ export default {
   // Home page
   .index {
     .left-branch {
-      @include group(100px, 260px);
+      @include group(100px, 330px);
       transform: scale(1.3);
     }
     .right-branch {
-      @include group(150px, 740px);
+      @include group(150px, 750px);
       transform: scale(1);
     }
     .bird-main {
-      @include group(-50px, 400px);
+      @include group(-50px, 420px);
       transform: scale(0.3);
     }
     .logo {
       transform: scale(2);
-      @include group(250px, 520px);
+      @include group(250px, 550px);
     }
   }
 
   // Individual page
   .intro {
     .left-branch {
-      @include group(120px, 200px);
+      @include group(140px, 300px);
       transform: scale(1.5);
     }
     .right-branch {
-      @include group(200px, 860px);
+      @include group(220px, 720px);
       transform: scale(1);
     }
     .bird-single {
-      @include group(40px, 300px);
-      transform: scale(0.2);
+      @include group(60px, 360px);
+      transform: scale(0.2) rotate(0.02turn);
     }
     .logo {
       @include group(120px, 550px);
@@ -432,6 +434,108 @@ export default {
     }
     .logo {
       @include group(240px, 530px);
+      transform: scale(1);
+    }
+    .profile-photo {
+      @include group(200px, 200px);
+    }
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  // Home page
+  .index {
+    .left-branch {
+      @include group(100px, 650px);
+      transform: scale(1.3);
+    }
+    .right-branch {
+      @include group(150px, 1050px);
+      transform: scale(1);
+    }
+    .bird-main {
+      @include group(-10px, 730px);
+      transform: scale(0.3);
+    }
+    .logo {
+      transform: scale(2);
+      @include group(280px, 860px);
+    }
+  }
+
+  // Individual page
+  .intro {
+    .left-branch {
+      @include group(140px, 500px);
+      transform: scale(1.5);
+    }
+    .right-branch {
+      @include group(220px, 1200px);
+      transform: scale(1);
+    }
+    .bird-single {
+      @include group(60px, 600px);
+      transform: scale(0.2) rotate(0.02turn);
+    }
+    .logo {
+      @include group(120px, 880px);
+      transform: scale(1.3);
+    }
+    .profile-photo {
+      @include group(200px, 900px);
+    }
+
+    .profile-name {
+      @include group(340px, 910px);
+    }
+  }
+
+  // Team page
+  .group {
+    .bird-1 {
+      z-index: 1;
+      @include group(75px, 500px);
+      transform: scale(0.2);
+    }
+
+    .bird-2 {
+      z-index: 1;
+      @include group(40px, 380px);
+      transform: scale(0.2);
+    }
+
+    .bird-3 {
+      z-index: 1;
+      @include group(100px, 1150px);
+      transform: scale(0.2);
+    }
+
+    .bird-4 {
+      z-index: 1;
+      @include group(120px, 1130px);
+      transform: scale(0.2);
+    }
+
+    .bird-5 {
+      z-index: 1;
+      @include group(0, 380px);
+      transform: scale(0.2);
+    }
+
+    .bird-main {
+      @include group(-30px, 680px);
+      transform: scale(0.18);
+    }
+    .left-branch {
+      @include group(80px, 460px);
+      transform: scale(1.2);
+    }
+    .right-branch {
+      @include group(150px, 1100px);
+      transform: scale(1);
+    }
+    .logo {
+      @include group(280px, 800px);
       transform: scale(1);
     }
     .profile-photo {

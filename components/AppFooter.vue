@@ -1,5 +1,7 @@
 <template>
-  <footer>Powered by Netlify</footer>
+  <footer>
+    <p>Powered by Netlify with love</p>
+  </footer>
 </template>
 
 <style scoped>

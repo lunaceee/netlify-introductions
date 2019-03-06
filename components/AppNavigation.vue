@@ -21,7 +21,7 @@
         </ul>
 
         <div @click="menuOpened = !menuOpened">
-          <icon-base class="menu" icon-name="menu" icon-color="white" width="28" height="28">
+          <icon-base class="menu" icon-name="menu" width="28" height="28">
             <icon-three-dot/>
           </icon-base>
         </div>
@@ -121,23 +121,6 @@ header {
 }
 
 // animation
-.index {
-  .header-img {
-    opacity: 0;
-  }
-}
-
-.intro {
-  .header-img {
-    transform: translate(0);
-  }
-}
-
-.group {
-  .header-img {
-    transform: scale(1.6) translate(80px);
-  }
-}
 
 .nav-wrapper {
   width: 100vw;

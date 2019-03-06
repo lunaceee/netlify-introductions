@@ -23,8 +23,7 @@ export default {
 /* common styles shared through the application */
 
 body {
-  background: white;
-  background-size: cover;
+  background: #fafafa;
   color: #333;
   font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
