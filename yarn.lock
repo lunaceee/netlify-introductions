@@ -657,6 +657,12 @@
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@mapbox/whoots-js/-/whoots-js-3.0.0.tgz#c1de4293081424da3ac30c23afa850af1019bb54"
 
+"@nuxtjs/vuetify@^0.5.5":
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/vuetify/-/vuetify-0.5.5.tgz#0c556afc6ea638dd8e28bf6100b69138fc1b57e3"
+  dependencies:
+    vuetify "^1.5.1"
+
 "@nuxtjs/youch@^4.2.3":
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/@nuxtjs/youch/-/youch-4.2.3.tgz#36f8b22df5a0efaa81373109851e1d857aca6bed"
@@ -8014,9 +8020,15 @@ vue@^2.5.17:
   version "2.5.17"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
 
+<<<<<<< HEAD
 vuetify@^1.5.4:
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.4.tgz#2f0f3a457ba0dcbf5bb1931b644532ae1e46533d"
+=======
+vuetify@^1.5.1, vuetify@^1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.5.tgz#98e7b8c5f43395a4b00bda5a64c7b97b2895ed5d"
+>>>>>>> add Vuetify to Nuxt
 
 vuex@^3.0.1:
   version "3.0.1"

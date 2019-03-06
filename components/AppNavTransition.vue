@@ -209,7 +209,7 @@ export default {
   .bird-single {
     opacity: 1;
     z-index: 1;
-    @include group(60px, 56px);
+    @include group(0, 240px);
     transform: scale(0.18) rotate(0.02turn);
   }
 
@@ -219,7 +219,7 @@ export default {
   }
 
   .right-branch {
-    @include group(160px, 10px);
+    @include group(100px, 180px);
     transform: scale(0.6) rotate(0.02turn);
   }
 

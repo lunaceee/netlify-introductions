@@ -31,9 +31,16 @@ module.exports = {
         rel: "stylesheet",
         href:
           "https://fonts.googleapis.com/css?family=Josefin+Sans|Playfair+Display"
+      },
+      {
+        rel: "stylesheet",
+        href:
+          "https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons"
       }
     ]
   },
+  plugins: ["~plugins/vuetify.js"],
+  modules: ["@nuxtjs/vuetify"],
   router: {
     middleware: "pages"
   },
@@ -44,7 +51,7 @@ module.exports = {
   /*
   ** Build configuration
   */
-  build: {},
+  build: { vendor: ["vuetify"] },
   /**
    * Create an array of URLs from a list of files
    * @param {*} urlFilepathTable
