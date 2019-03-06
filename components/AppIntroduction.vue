@@ -7,7 +7,7 @@
   }"
   >
     <v-layout row justify-center class="content">
-      <v-flex xs12>
+      <v-flex xs12 md8>
         <v-card>
           <v-list v-for="(item, index) in keys" :key="index">
             <v-list-tile :key="index">
