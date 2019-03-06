@@ -8021,9 +8021,15 @@ vue@^2.5.17:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 vuetify@^1.5.4:
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.4.tgz#2f0f3a457ba0dcbf5bb1931b644532ae1e46533d"
+=======
+vuetify@^1.5.1, vuetify@^1.5.5:
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.5.tgz#98e7b8c5f43395a4b00bda5a64c7b97b2895ed5d"
+>>>>>>> add Vuetify to Nuxt
 =======
 vuetify@^1.5.1, vuetify@^1.5.5:
   version "1.5.5"
